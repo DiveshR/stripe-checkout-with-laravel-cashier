@@ -1,4 +1,4 @@
-# Laravel Cashier Package :
+# Laravel Cashier Package  :
 
 I'm creating a Stripe checkout form process for a single payment, step-by-step.
 
