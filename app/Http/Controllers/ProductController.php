@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
 
 class ProductController extends Controller
 {
@@ -48,6 +49,12 @@ class ProductController extends Controller
 
     public function checkout()
     {
-        return view('checkout');
+        $order = Order::with('product')
+                ->where('user_id',auth()->id())
+                ->whereNull('paid_at')
+                ->latest()
+                ->first();
+       
+        return view('checkout', compact('order'));
     }
 }

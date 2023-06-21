@@ -22,7 +22,7 @@
             <tr>
               <td class="my-1">{{ $product->name }}</td>
               <td class="my-1">$ {{ $product->price }}</td>
-              <td class="my-1"><a href="{{ route('confirm-buy',['slug' => $product->slug]) }}" class="rounded-none ...">Buy</a></td>
+              <td class="my-1"><a href="{{ route('confirm-buy',['slug' => $product->slug]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8">Buy</a></td>
             </tr>
            @endforeach 
           </tbody>
