@@ -23,6 +23,47 @@
     </dl>
   </div>
       </div>
+      <div class="p-6 border-t border-gray-100">
+         <form method="POST" action="{{ route('confirm') }}">
+        @csrf
+
+        <!-- Name -->
+        <div>
+          <input type="hidden" name="product_slug" value="{{ $product->slug }}">
+            <x-input-label for="name" :value="__('Name')" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" : value="{{ auth()->user()->name }}" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!-- Email Address -->
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" : value="{{ auth()->user()->email }}" required autocomplete="email" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Address -->
+        <div class="mt-4">
+            <x-input-label for="address" :value="__('Address')" />
+
+            <x-text-input id="address" class="block mt-1 w-full"
+                            type="text" :value="old('email')"
+                            name="address"
+                            required />
+
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
+
+     
+
+        <div class="flex items-center justify-start mt-4">
+
+            <x-primary-button class="ml-4">
+                {{ __('Confirm Purchase') }}
+            </x-primary-button>
+        </div>
+    </form>
+      </div>
     </div>
   </div>
 </div>

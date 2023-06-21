@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable = ['name','slug','price'];
+    protected $fillable = ['name','slug','price','address'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -37,7 +37,7 @@ class Product extends Model
     }
 
  /**
-     * Get the user's name.
+     * Get the product name.
      */
     protected function name(): Attribute
     {
