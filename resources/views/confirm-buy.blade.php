@@ -47,7 +47,7 @@
             <x-input-label for="address" :value="__('Address')" />
 
             <x-text-input id="address" class="block mt-1 w-full"
-                            type="text" :value="old('email')"
+                            type="text" :value="old('address')"
                             name="address"
                             required />
 

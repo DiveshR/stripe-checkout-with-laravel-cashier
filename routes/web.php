@@ -23,7 +23,9 @@ Route::get('buy/{slug}', [ProductController::class, 'confirmBuy'])->name('confir
 Route::post('buy', [ProductController::class, 'buy'])->name('confirm');
 Route::get('checkout', [ProductController::class, 'checkout'])->name('checkout');
 
-Route::get('checkout', [ProductController::class, 'checkout'])->name('pay');
+Route::post('pay', [ProductController::class, 'pay'])->name('pay');
+Route::view('success', 'success')->name('success');
+
 // Route::get('products', [ProductController::class, 'index']);
 
 Route::get('/dashboard', function () {

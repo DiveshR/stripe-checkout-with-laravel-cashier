@@ -26,7 +26,7 @@ class ProductController extends Controller
         // return $request->all();
         $product =  Product::where('slug',$request->product_slug)->firstOrFail();
         // return $product;
-        $user = User::firstOrCreate([
+        $user = User::updateOrCreate([
             'email' => $request->email,
         ],
             [
@@ -54,7 +54,26 @@ class ProductController extends Controller
                 ->whereNull('paid_at')
                 ->latest()
                 ->first();
+        $paymentIntent = auth()->user()->createSetupIntent();
        
-        return view('checkout', compact('order'));
+        return view('checkout', compact('order','paymentIntent'));
+    }
+
+    public function pay(Request $request)
+    {
+        $order = Order::where('user_id',auth()->user()->id)->findOrFail($request->order_id);
+               $user = auth()->user();
+        try {
+            $user->createOrGetStripeCustomer();
+            $user->updateDefaultPaymentMethod($request->payment_method);
+            $user->charge($order->price * 100, $request->payment_method, [
+                'description' => 'Software development services',
+                'currency' => 'inr',
+            ]);
+            $order->update(['paid_at' => now()]);
+        } catch (\Exception $e) {
+            return back()->with(['error' => $e->getMessage()]);
+        }
+        return redirect()->route('success');
     }
 }
