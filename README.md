@@ -10,3 +10,4 @@ I'm creating a Stripe checkout form process for a single payment, step-by-step.
 * Laravel Cashier 14
 * Laravel UI (Bootstrap 4)
 * Spatie Laravel Stripe Webhook package
+* Git Repo for spatie Package (https://github.com/spatie/laravel-stripe-webhooks)

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
 
+
 class ProductController extends Controller
 {
     public function index()
@@ -70,7 +71,7 @@ class ProductController extends Controller
                 'description' => 'Software development services',
                 'currency' => 'inr',
             ]);
-            $order->update(['paid_at' => now()]);
+
         } catch (\Exception $e) {
             return back()->with(['error' => $e->getMessage()]);
         }
